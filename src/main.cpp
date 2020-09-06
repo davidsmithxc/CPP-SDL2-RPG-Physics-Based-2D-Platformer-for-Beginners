@@ -14,10 +14,14 @@ int main(int argc, char* args[])
 
     RenderWindow window("Game v1.0", 1280, 720);
 
+    // load textures
+    SDL_Texture* grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
+    
     // set up game loop
     bool gameRunning = true;
     SDL_Event event;
 
+    // start game loop
     while(gameRunning)
     {
         while(SDL_PollEvent(&event))
@@ -25,8 +29,13 @@ int main(int argc, char* args[])
             if(event.type == SDL_QUIT)
                 gameRunning = false;
         }
+
+        window.clear();
+        window.render(grassTexture);
+        window.display();
     }
 
+    // exit and clean up
     window.cleanUp();
     SDL_Quit();
     

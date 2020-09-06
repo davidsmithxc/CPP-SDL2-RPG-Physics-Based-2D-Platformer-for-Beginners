@@ -19,3 +19,30 @@ void RenderWindow::cleanUp()
 {
     SDL_DestroyWindow(window);
 }
+
+SDL_Texture* RenderWindow::loadTexture(const char* p_filePath)
+{
+    //TODO: update to use smart pointers, move sematics?
+    SDL_Texture* texture = NULL;
+    texture = IMG_LoadTexture(renderer, p_filePath);
+
+    if (texture == NULL)
+        std::cout << "Failed to laod texture. Error: " << SDL_GetError() << std::endl;
+
+    return texture;
+}
+
+void RenderWindow::clear()
+{
+    SDL_RenderClear(renderer);
+}
+
+void RenderWindow::render(SDL_Texture* p_tex)
+{
+    SDL_RenderCopy(renderer, p_tex, NULL, NULL);
+}
+
+void RenderWindow::display()
+{
+    SDL_RenderPresent(renderer);
+}
