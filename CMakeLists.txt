@@ -15,6 +15,7 @@ find_package(SDL2 REQUIRED)
 PKG_SEARCH_MODULE(SDL2_IMAGE REQUIRED SDL2_image>=2.0.0)
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} src)
 
-add_executable(RpgTutorial src/main.cpp src/renderwindow.cpp)
+file(GLOB project_SRC "src/*.cpp")
+add_executable(RpgTutorial ${project_SRC})
 string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
 target_link_libraries(RpgTutorial ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
