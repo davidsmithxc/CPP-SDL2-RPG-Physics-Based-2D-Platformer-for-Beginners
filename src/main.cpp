@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <vector>
 
 #include "RenderWindow.hpp"
 #include "Entity.hpp"
@@ -17,9 +18,16 @@ int main(int argc, char* args[])
 
     // load textures
     SDL_Texture* grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
-    Entity entities[3] = {Entity(0, 0, grassTexture),
-                          Entity(30, 0, grassTexture), 
-                          Entity(30, 30, grassTexture)};
+    // Entity entities[3] = {Entity(0, 0, grassTexture),
+    //                       Entity(30, 0, grassTexture), 
+    //                       Entity(30, 30, grassTexture)};
+
+    std::vector<Entity> entitiees;
+
+    for (int i = 0; i < 4; i++)
+    {
+        entitiees.emplace_back(Entity(i*10, i*30, grassTexture));
+    }
     
     // set up game loop
     bool gameRunning = true;
@@ -36,9 +44,9 @@ int main(int argc, char* args[])
 
         window.clear();
         
-        for (int i = 0; i < 3; i++)
+        for (Entity& e : entitiees)
         {
-            window.render(entities[i]);
+            window.render(e);
         }
         
         window.display();
