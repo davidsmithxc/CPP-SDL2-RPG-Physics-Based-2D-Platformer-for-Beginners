@@ -18,15 +18,12 @@ int main(int argc, char* args[])
 
     // load textures
     SDL_Texture* grassTexture = window.loadTexture("res/gfx/ground_grass_1.png");
-    // Entity entities[3] = {Entity(0, 0, grassTexture),
-    //                       Entity(30, 0, grassTexture), 
-    //                       Entity(30, 30, grassTexture)};
 
     std::vector<Entity> entitiees;
 
     for (int i = 0; i < 4; i++)
     {
-        entitiees.emplace_back(Entity(i*10, i*30, grassTexture));
+        entitiees.emplace_back(Entity(Vector2f(i*32, i*32), grassTexture));
     }
     
     // set up game loop
